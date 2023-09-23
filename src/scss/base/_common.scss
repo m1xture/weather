@@ -8,21 +8,21 @@
   // margin: 0 auto;
   // padding: 0 $containerSidePadding + px;
 
-  @media screen and (min-width: $breakpoint320) {
-    width: 320px;
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-  @media screen and (min-width: $breakpoint768) {
-    width: 768px;
-    padding-right: 34px;
-    padding-left: 34px;
-  }
-  @media screen and (min-width: $breakpoint1200) {
-    width: 1080px;
-    padding-right: 15px;
-    padding-left: 15px;
-  }
+  // @media screen and (min-width: $breakpoint320) {
+  //   width: 320px;
+  //   padding-right: 20px;
+  //   padding-left: 20px;
+  // }
+  // @media screen and (min-width: $breakpoint768) {
+  //   width: 768px;
+  //   padding-right: 34px;
+  //   padding-left: 34px;
+  // }
+  // @media screen and (min-width: $breakpoint1200) {
+  //   width: 1080px;
+  //   padding-right: 15px;
+  //   padding-left: 15px;
+  // }
 
   // @media (max-width: $breakpoint1450) {
   //     max-width: 1200px;
@@ -43,14 +43,14 @@
 
 // Body & Locked
 body {
-  font-family: $fontMain;
-  &.locked {
-    overflow: hidden;
-  }
-  // Dark mode styles
-  &.dark {
-    background: #242424;
-  }
+  // font-family: $fontMain;
+  // &.locked {
+  //   overflow: hidden;
+  // }
+  // // Dark mode styles
+  // &.dark {
+  //   background: #242424;
+  // }
 }
 
 button {
