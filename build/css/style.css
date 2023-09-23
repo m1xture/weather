@@ -76,6 +76,10 @@ p {
   margin-right: auto;
 }
 
+body {
+  font-family: "Montserrat";
+}
+
 button {
   cursor: pointer;
 }
