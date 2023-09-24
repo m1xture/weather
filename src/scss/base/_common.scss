@@ -18,11 +18,11 @@
   //   padding-right: 34px;
   //   padding-left: 34px;
   // }
-  // @media screen and (min-width: $breakpoint1200) {
-  //   width: 1080px;
-  //   padding-right: 15px;
-  //   padding-left: 15px;
-  // }
+  @media screen and (min-width: 1200px) {
+    width: 1440px;
+    padding-right: 90px;
+    padding-left: 90px;
+  }
 
   // @media (max-width: $breakpoint1450) {
   //     max-width: 1200px;
@@ -44,6 +44,7 @@
 // Body & Locked
 body {
   font-family: 'Montserrat';
+  color: $text-color;
   // &.locked {
   //   overflow: hidden;
   // }
