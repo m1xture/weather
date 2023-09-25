@@ -296,6 +296,13 @@ button {
   background-position: center;
   padding-top: 141px;
   padding-bottom: 97px;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .weather-block {
