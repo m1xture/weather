@@ -10,6 +10,9 @@
   background-position: center;
   padding-top: 141px;
     padding-bottom: 97px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .hero-block {
@@ -108,4 +111,7 @@
   line-height: normal;
   text-transform: uppercase;
   margin-right: 5px;
+}
+.hero__main-weather-ico {
+  position: absolute;
 }
