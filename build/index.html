@@ -52,7 +52,9 @@
       </li>
       <li class="header__item">
         <div class="degrees">
-          <button type="button" class="degrees__btn degrees__disable">°F</button>
+          <button type="button" class="degrees__btn degrees__disable">
+            °F
+          </button>
           <button type="button" class="degrees__btn">°С</button>
         </div>
       </li>
@@ -65,7 +67,8 @@
           class="search__input"
           name="cityInput"
         />
-        <button type="button" class="search__btn">SEARCH</button>
+        <p class="search__error error-hidden" data-search-error></p>
+        <button type="submit" class="search__btn">SEARCH</button>
       </form>
     </div>
   </div>
@@ -83,7 +86,7 @@
     <div class="weather-block">
       <div class="hero-degree-block">
         <h2 class="hero__degree"><span data-degree>10</span>°</h2>
-        <svg
+        <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           width="164"
           height="104"
@@ -103,8 +106,9 @@
             stroke="#ACA6A6"
             stroke-width="0.1"
           />
-        </svg>
-      </div>
+        </svg> -->
+        <s><img class="hero__main-weather-ico" src="../img/icons/cloudsSunD.png" alt="weather icon"></s>
+     </div>
       <div class="overcast">
         <h3 class="overcast__subtitle">OVercast</h3>
         <p class="overcast__text">
@@ -201,8 +205,7 @@
       </li>
     </ul>
   </div>
-</section>
-</main>
+</section></main>
   </body>
 
   <script src="./js/scripts.min.js" type="module"></script>

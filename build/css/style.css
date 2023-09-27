@@ -200,6 +200,7 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
 }
 
 .search__input {
@@ -285,6 +286,22 @@ button {
   text-transform: uppercase;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.search__error {
+  position: absolute;
+  top: 55px;
+  color: #f75252;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  /* 150% */
+}
+
+.error-hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .hero {
@@ -411,6 +428,10 @@ button {
   line-height: normal;
   text-transform: uppercase;
   margin-right: 5px;
+}
+
+.hero__main-weather-ico {
+  position: absolute;
 }
 
 @media screen and (min-width: 1200px) {
