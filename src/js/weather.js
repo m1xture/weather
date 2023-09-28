@@ -1,3 +1,10 @@
+const unitsBtns = document.querySelector(".degrees");
+unitsBtns.addEventListener("click", function (e) {
+  if (e.target.dataUnits === "Celsuim") {
+  } else {
+  }
+});
+
 const weatherElems = {
   cityTextEl: document.querySelector(".location__text"),
   dayOfWeekEl: document.querySelector("[data-date]"),
@@ -26,7 +33,7 @@ const weatherElems = {
   },
 };
 
-console.log(weatherElems);
+// console.log(weatherElems);
 
 const weatherIcons = {
   clearSkyIco: "",
@@ -74,7 +81,6 @@ formEl.addEventListener("submit", function (e) {
     }
     errorTextEl.classList.remove("error-hidden");
   } else if (errors === 0) {
-    console.log("last work");
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${this.cityInput.value}&appid=9a6c5b632623b9a0c279060fc1b94b4d`
     )
@@ -228,6 +234,17 @@ formEl.addEventListener("submit", function (e) {
         )}`;
         weatherElems.windEl.textContent = `${Math.round(data.wind.speed)} `;
         weatherElems.humidity.textContent = `${Math.round(data.main.humidity)}`;
+      })
+      .catch(function (error) {
+        console.log(error);
+        errorTextEl.classList.remove("error-hidden");
+        errorTextEl.textContent = "Type a valid city name";
       });
   }
 });
+
+fetch(
+  `https://api.weatherapi.com/v1/forecast.json?key=76c3cf13dc02402cacd153833232809&q=London&days=4&aqi=no&alerts=no`
+)
+  .then((res) => res.json())
+  .then((data) => console.log(data));

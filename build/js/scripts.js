@@ -1,3 +1,62 @@
+// Custom Scripts
+/**========================================================================
+ *                           MENU BURGER
+ *========================================================================**/
+// (() => {
+//     const refs = {
+//       openModalBtn: document.querySelector('[data-mobile-open]'),
+//       closeModalBtn: document.querySelector('[data-mobile-close]'),
+//       modal: document.querySelector('[data-mobile]'),
+//     };
+
+//     refs.openModalBtn.addEventListener('click', toggleModal);
+//     refs.closeModalBtn.addEventListener('click', toggleModal);
+
+//     function toggleModal() {
+//       document.body.classList.toggle('modal-open');
+//       refs.modal.classList.toggle('is-hidden');
+//     }
+//   })();
+
+// //! change bg
+const heroRef = document.querySelector(".hero");
+const changeImgRef = document.querySelector(".header__btn-bg");
+const imgsArr = ["../../img/bg1.jpg", "../../img/bg2.jpg", "../../img/bg3.jpg"];
+changeImgRef.addEventListener("click", () => {
+  const min = 0;
+  const max = imgsArr.length - 1;
+  const idx = Math.round(Math.random() * (max - min) + min);
+  const currentBgImage = heroRef.style.backgroundImage;
+
+  const img = imgsArr[idx];
+  if (currentBgImage) {
+    // Якщо фонове зображення вже встановлене, видаляємо поточне зображення і встановлюємо нове
+    heroRef.style.backgroundImage = `linear-gradient(
+    180deg,
+    rgba(8, 15, 26, 0.59) 0%,
+    rgba(17, 17, 46, 0.46) 100%
+  ), url(${img})`;
+  } else {
+    // Якщо фонового зображення ще немає, встановлюємо нове зображення
+    heroRef.style.backgroundImage = `linear-gradient(
+    180deg,
+    rgba(8, 15, 26, 0.59) 0%,
+    rgba(17, 17, 46, 0.46) 100%
+  ), url(${img})`;
+  }
+  //   heroRef.style.backgroundImage = `linear-gradient(
+  //   180deg,
+  //   rgba(8, 15, 26, 0.59) 0%,
+  //   rgba(17, 17, 46, 0.46) 100%
+  // ), url(${img})`;
+});
+;
+const unitsBtns = document.querySelector(".degrees");
+unitsBtns.addEventListener("click", function (e) {
+  if (e.target.dataUnits === "Celsuim") {
+  } else {
+  }
+});
 
 const weatherElems = {
   cityTextEl: document.querySelector(".location__text"),
@@ -27,7 +86,7 @@ const weatherElems = {
   },
 };
 
-console.log(weatherElems);
+// console.log(weatherElems);
 
 const weatherIcons = {
   clearSkyIco: "",
@@ -75,7 +134,6 @@ formEl.addEventListener("submit", function (e) {
     }
     errorTextEl.classList.remove("error-hidden");
   } else if (errors === 0) {
-    console.log("last work");
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${this.cityInput.value}&appid=9a6c5b632623b9a0c279060fc1b94b4d`
     )
@@ -229,6 +287,19 @@ formEl.addEventListener("submit", function (e) {
         )}`;
         weatherElems.windEl.textContent = `${Math.round(data.wind.speed)} `;
         weatherElems.humidity.textContent = `${Math.round(data.main.humidity)}`;
+      })
+      .catch(function (error) {
+        console.log(error);
+        errorTextEl.classList.remove("error-hidden");
+        errorTextEl.textContent = "Type a valid city name";
       });
   }
-});;
+});
+
+fetch(
+  `https://api.weatherapi.com/v1/forecast.json?key=76c3cf13dc02402cacd153833232809&q=London&days=4&aqi=no&alerts=no`
+)
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+;
+
