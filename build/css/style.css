@@ -304,6 +304,30 @@ button {
   pointer-events: none;
 }
 
+@-webkit-keyframes hoverDescription {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes hoverDescription {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
 .hero {
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 15, 26, 0.59)), to(rgba(17, 17, 46, 0.46))), url(../../img/bg3.jpg);
   background-image: -o-linear-gradient(top, rgba(8, 15, 26, 0.59) 0%, rgba(17, 17, 46, 0.46) 100%), url(../../img/bg3.jpg);
@@ -409,6 +433,10 @@ button {
   gap: 51px;
 }
 
+.forecast__item {
+  position: relative;
+}
+
 .forecast-block {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -432,6 +460,28 @@ button {
 
 .hero__main-weather-ico {
   position: absolute;
+}
+
+.forecast__icon {
+  height: 52px;
+}
+
+.forecast-description-block {
+  width: 150px;
+  height: 30px;
+  background-color: #33333396;
+  color: white;
+  border-radius: 5px;
+  position: absolute;
+  -webkit-animation-name: hoverDescription;
+          animation-name: hoverDescription;
+  -webkit-animation-duration: 350ms;
+          animation-duration: 350ms;
+  display: none;
+}
+
+.forecast__item:hover .forecast-description-block {
+  display: block;
 }
 
 @media screen and (min-width: 1200px) {

@@ -51,12 +51,12 @@ changeImgRef.addEventListener("click", () => {
   // ), url(${img})`;
 });
 ;
-const unitsBtns = document.querySelector(".degrees");
-unitsBtns.addEventListener("click", function (e) {
-  if (e.target.dataUnits === "Celsuim") {
-  } else {
-  }
-});
+// const unitsBtns = document.querySelector(".degrees");
+// unitsBtns.addEventListener("click", function (e) {
+//   if (e.target.dataUnits === "Celsuim") {
+//   } else {
+//   }
+// });
 
 const weatherElems = {
   cityTextEl: document.querySelector(".location__text"),
@@ -66,23 +66,24 @@ const weatherElems = {
   timeTextEl: document.querySelector("[data-time]"),
   currentDegree: document.querySelector("[data-degree]"),
   currentWeatherIcon: document.querySelector(".hero__main-weather-ico"),
+  currentStatus: document.querySelector("[data-current-status]"),
   feelsLikeEl: document.querySelector("[data-feels-like]"),
   windEl: document.querySelector("[data-wind]"),
   humidity: document.querySelector("[data-humidity]"),
   firstDay: {
     firstDayOfWeekEl: document.querySelector("[data-first-day]"),
     firstDayOfWeekDegreeEl: document.querySelector("[data-first-degree]"),
-    firstDayOfWeekIcon: "",
+    firstDayOfWeekIcon: document.querySelector("[data-first-day-ico]"),
   },
   secondDay: {
     secondDayOfWeekEl: document.querySelector("[data-second-day]"),
     secondDayOfWeekDegreeEl: document.querySelector("[data-second-degree]"),
-    secondDayOfWeekIcon: "",
+    secondDayOfWeekIcon: document.querySelector("[data-second-day-ico]"),
   },
   thirdDay: {
     thirdDayOfWeekEl: document.querySelector("[data-third-day]"),
     thirdDayOfWeekDegreeEl: document.querySelector("[data-third-degree]"),
-    thirdDayOfWeekIcon: "",
+    thirdDayOfWeekIcon: document.querySelector("[data-third-day-ico]"),
   },
 };
 
@@ -141,7 +142,11 @@ formEl.addEventListener("submit", function (e) {
       .then(function (data) {
         console.log(data);
         weatherElems.cityTextEl.textContent = `${data.name}, ${data.sys.country}`;
-        weatherElems.timeTextEl.textContent = `${DateClass.getHours()}:${DateClass.getMinutes()}`;
+        let minutes = `${DateClass.getMinutes()}`;
+        if (DateClass.getMinutes() < 10) {
+          minutes = `0${DateClass.getMinutes()}`;
+        }
+        weatherElems.timeTextEl.textContent = `${DateClass.getHours()}:${minutes}`;
         weatherElems.dayOfWeekEl.textContent = `${
           weekdayNames[DateClass.getDay()]
         }`;
@@ -152,7 +157,7 @@ formEl.addEventListener("submit", function (e) {
         weatherElems.currentDegree.textContent = `${Math.round(
           data.main.temp - 273
         )}`;
-
+        weatherElems.currentStatus.textContent = data.weather[0].description;
         //# icons...
 
         if (data.weather[0].main === "Clear") {
@@ -287,19 +292,187 @@ formEl.addEventListener("submit", function (e) {
         )}`;
         weatherElems.windEl.textContent = `${Math.round(data.wind.speed)} `;
         weatherElems.humidity.textContent = `${Math.round(data.main.humidity)}`;
+
+        //todo: next days
+
+        fetch(
+          `https://api.weatherapi.com/v1/forecast.json?key=76c3cf13dc02402cacd153833232809&q=${data.name}&days=4&aqi=no&alerts=no`
+        )
+          .then((response) => response.json())
+          .then((dataForecast) => {
+            console.log(dataForecast);
+            const fullWeekdayNames = [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+              "Monday",
+              "Tuesday",
+            ];
+            weatherElems.firstDay.firstDayOfWeekDegreeEl.textContent =
+              dataForecast.forecast.forecastday[1].day.avgtemp_c.toFixed();
+            weatherElems.secondDay.secondDayOfWeekDegreeEl.textContent =
+              dataForecast.forecast.forecastday[2].day.avgtemp_c.toFixed();
+            weatherElems.thirdDay.thirdDayOfWeekDegreeEl.textContent =
+              dataForecast.forecast.forecastday[3].day.avgtemp_c.toFixed();
+
+            //? days of week
+
+            weatherElems.firstDay.firstDayOfWeekEl.textContent =
+              fullWeekdayNames[DateClass.getDay() + 1];
+            weatherElems.secondDay.secondDayOfWeekEl.textContent =
+              fullWeekdayNames[DateClass.getDay() + 2];
+            weatherElems.thirdDay.thirdDayOfWeekEl.textContent =
+              fullWeekdayNames[DateClass.getDay() + 3];
+
+            //# icons again...
+
+            let allStatuses = [];
+            fetch("https://www.weatherapi.com/docs/weather_conditions.json")
+              .then((resp) => {
+                return resp.json();
+              })
+              .then(function (dataIcons) {
+                // console.log(dataIcons);
+                allStatuses = dataIcons.map(({ day, night }) => {
+                  if (day === night) {
+                    return day;
+                  } else {
+                    return night;
+                  }
+                });
+                allStatuses.push("Sunny");
+                // console.log(allStatuses);
+                // console.log(dataForecast);
+                const allDaysElems = [
+                  weatherElems.firstDay.firstDayOfWeekIcon,
+                  weatherElems.secondDay.secondDayOfWeekIcon,
+                  weatherElems.thirdDay.thirdDayOfWeekIcon,
+                ];
+                let acc = 0;
+                allDaysElems.map((iconEl) => {
+                  acc += 1;
+                  // dataForecast.forecast.forecastday[acc];
+                  console.log(iconEl);
+                  console.log(acc);
+                  console.log(dataForecast.forecast.forecastday[acc]);
+                  allStatuses.map((status) => {
+                    if (
+                      dataForecast.forecast.forecastday[acc].day.condition
+                        .text === status
+                    ) {
+                      switch (
+                        dataForecast.forecast.forecastday[acc].day.condition
+                          .text
+                      ) {
+                        case "Sunny":
+                          iconEl.src = "../img/icons/sun.png";
+                          break;
+                        case "Clear":
+                          iconEl.src = "../img/icons/moon.png";
+                          break;
+                        case "Partly cloudy":
+                          iconEl.src = "../img/icons/cloudsSunD.png";
+                          break;
+                        case "Cloudy":
+                          iconEl.src = "../img/icons/twoclouds.png";
+                          break;
+                        case "Cloudy" &&
+                          dataForecast.forecast.forecastday[acc].day
+                            .maxwind_kph > 25:
+                          iconEl.src = "../img/icons/cloudwind.png";
+                          break;
+                        case "Mist" || "Fog" || "Freezing fog":
+                          iconEl.src = "../img/icons/cloudFog.png";
+                          break;
+                        case "Patchy rain possible" ||
+                          "Patchy light drizzle" ||
+                          "Light drizzle" ||
+                          "Freezing drizzle" ||
+                          "Patchy light rain" ||
+                          "Light rain":
+                          iconEl.src = "../img/icons/lightRain.png";
+                          break;
+                        case "Patchy snow possible" || "Patchy heavy snow":
+                          iconEl.src = "../img/icons/cloud1snow.png";
+                          break;
+                        case "Patchy sleet possible" ||
+                          "Patchy freezing drizzle possible" ||
+                          "Light freezing rain" ||
+                          "Light sleet" ||
+                          "Ice pellets" ||
+                          "Light showers of ice pellets" ||
+                          "Moderate or heavy showers of ice pellets":
+                          iconEl.src = "../img/icons/cloud90.png";
+                          break;
+                        case "Thundery outbreaks possible":
+                          iconEl.src = "../img/icons/lightning.png";
+                          break;
+                        case "Blizzard":
+                          iconEl.src = "../img/icons/cloudwind.png";
+                          break;
+                        case "Heavy freezing drizzle" ||
+                          "Moderate rain at times" ||
+                          "Moderate rain":
+                          iconEl.src = "../img/icons/rains.png";
+                          break;
+                        case "Heavy rain at times":
+                          iconEl.src = "../img/icons/cloudRainDeg.png";
+                          break;
+                        case "Heavy rain" ||
+                          "Moderate or heavy freezing rain" ||
+                          "Torrential rain shower":
+                          iconEl.src = "../img/icons/cloud2rain.png";
+                          break;
+                        case "Moderate or heavy sleet" ||
+                          "Heavy snow" ||
+                          "Moderate or heavy sleet showers" ||
+                          "Moderate or heavy snow showers":
+                          iconEl.src = "../img/icons/cloudsnow.png";
+                          break;
+                        case "Patchy light snow" ||
+                          "Light snow" ||
+                          "Patchy moderate snow":
+                          iconEl.src = "../img/icons/snow.png";
+                          break;
+                        case "Moderate snow" ||
+                          "Light sleet showers" ||
+                          "Light snow showers":
+                          iconEl.src = "../img/icons/snows.png";
+                          break;
+                        case "Light rain shower" ||
+                          "Moderate or heavy rain shower":
+                          iconEl.src = "../img/icons/cloudrain90.png";
+                          break;
+                        case "Patchy light rain with thunder":
+                          iconEl.src = "../img/icons/cloudTh.png";
+                          break;
+                        case "Moderate or heavy rain with thunder" ||
+                          "Moderate or heavy snow with thunder":
+                          iconEl.src = "../img/icons/cloudrainthunder.png";
+                          break;
+                        case "Patchy light snow with thunder":
+                          iconEl.src = "../img/icons/drizzleThunder.png";
+                          break;
+                        default:
+                          break;
+                      }
+                    }
+                  });
+                });
+              });
+          });
       })
       .catch(function (error) {
         console.log(error);
         errorTextEl.classList.remove("error-hidden");
-        errorTextEl.textContent = "Type a valid city name";
+        errorTextEl.textContent = "City not found";
       });
   }
 });
-
-fetch(
-  `https://api.weatherapi.com/v1/forecast.json?key=76c3cf13dc02402cacd153833232809&q=London&days=4&aqi=no&alerts=no`
-)
-  .then((res) => res.json())
-  .then((data) => console.log(data));
 ;
 

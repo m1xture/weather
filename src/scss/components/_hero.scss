@@ -1,3 +1,12 @@
+@keyframes hoverDescription {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
 .hero {
   background-image: linear-gradient(
       180deg,
@@ -92,6 +101,7 @@
 }
 
 .forecast__item {
+  position: relative;
 }
 
 .forecast-block {
@@ -114,4 +124,23 @@
 }
 .hero__main-weather-ico {
   position: absolute;
+}
+.forecast__icon {
+  height: 52px;
+}
+.forecast-description-block {
+  width: 150px;
+  height: 30px;
+  background-color: #33333396;
+  color: white;
+  border-radius: 5px;
+  position: absolute;
+  // transform: translateY(-55px);
+  animation-name: hoverDescription;
+  animation-duration: 350ms;
+  // animation-delay: 0ms;
+  display: none;
+}
+.forecast__item:hover .forecast-description-block {
+  display: block;
 }
