@@ -467,8 +467,8 @@ button {
 }
 
 .forecast-description-block {
-  width: 150px;
-  height: 30px;
+  width: 100%;
+  padding: 10px;
   background-color: #33333396;
   color: white;
   border-radius: 5px;
@@ -482,6 +482,77 @@ button {
 
 .forecast__item:hover .forecast-description-block {
   display: block;
+  -webkit-transition-delay: 50ms;
+       -o-transition-delay: 50ms;
+          transition-delay: 50ms;
+}
+
+.forecast-card__subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: none;
+  text-wrap: no-wrap;
+  margin-bottom: 7px;
+}
+
+.forecast__desc {
+  font-size: 16px;
+  line-height: normal;
+}
+
+#map {
+  width: 375px;
+  height: 398px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.hero .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.leaflet-control {
+  display: none;
+}
+
+.leaflet-interactive {
+  display: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-shadow: none;
+}
+
+.leaflet-marker-pane {
+  display: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-shadow: none;
+}
+
+.leaflet-shadow-pane {
+  display: none;
+}
+
+.map-coords {
+  margin-top: 20px;
+}
+
+.map__text {
+  text-align: right;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  text-transform: capitalize;
 }
 
 @media screen and (min-width: 1200px) {

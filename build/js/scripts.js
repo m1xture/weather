@@ -51,12 +51,23 @@ changeImgRef.addEventListener("click", () => {
   // ), url(${img})`;
 });
 ;
-// const unitsBtns = document.querySelector(".degrees");
-// unitsBtns.addEventListener("click", function (e) {
-//   if (e.target.dataUnits === "Celsuim") {
-//   } else {
-//   }
-// });
+let selectedUnits = "";
+const unitsBtns = document.querySelector(".degrees");
+unitsBtns.addEventListener("click", function (e) {
+  if (e.target.hasAttribute("data-f")) {
+    selectedUnits = "F";
+  } else {
+    selectedUnits = "C";
+  }
+  console.log(e.target.textContent);
+  console.log(selectedUnits);
+});
+let map = L.map("map").setView([51.505, -0.09], 7);
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
 
 const weatherElems = {
   cityTextEl: document.querySelector(".location__text"),
@@ -70,6 +81,7 @@ const weatherElems = {
   feelsLikeEl: document.querySelector("[data-feels-like]"),
   windEl: document.querySelector("[data-wind]"),
   humidity: document.querySelector("[data-humidity]"),
+  forecastBlocksRefs: document.querySelectorAll(".forecast-description-block"),
   firstDay: {
     firstDayOfWeekEl: document.querySelector("[data-first-day]"),
     firstDayOfWeekDegreeEl: document.querySelector("[data-first-degree]"),
@@ -89,10 +101,6 @@ const weatherElems = {
 
 // console.log(weatherElems);
 
-const weatherIcons = {
-  clearSkyIco: "",
-};
-
 const DateClass = new Date();
 const weekdayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const monthsNames = [
@@ -109,6 +117,9 @@ const monthsNames = [
   "November",
   "December",
 ];
+
+let mapMarker;
+let mapCircle;
 
 //# Api start
 
@@ -293,6 +304,26 @@ formEl.addEventListener("submit", function (e) {
         weatherElems.windEl.textContent = `${Math.round(data.wind.speed)} `;
         weatherElems.humidity.textContent = `${Math.round(data.main.humidity)}`;
 
+        //? map
+
+        if (mapMarker) {
+          map.removeLayer(mapMarker);
+          map.removeLayer(mapCircle);
+        }
+
+        mapMarker = L.marker([data.coord.lat, data.coord.lon]).addTo(map);
+        mapCircle = L.circle([data.coord.lat, data.coord.lon], {
+          radius: 10000,
+        }).addTo(map);
+        map.fitBounds(mapCircle.getBounds());
+
+        document.querySelector(
+          "[data-coords-lat]"
+        ).textContent = `${data.coord.lat}`;
+        document.querySelector(
+          "[data-coords-lon]"
+        ).textContent = `${data.coord.lon}`;
+
         //todo: next days
 
         fetch(
@@ -356,10 +387,22 @@ formEl.addEventListener("submit", function (e) {
                 let acc = 0;
                 allDaysElems.map((iconEl) => {
                   acc += 1;
-                  // dataForecast.forecast.forecastday[acc];
-                  console.log(iconEl);
-                  console.log(acc);
-                  console.log(dataForecast.forecast.forecastday[acc]);
+                  let avgForecastWind =
+                    dataForecast.forecast.forecastday[acc].day.maxwind_kph;
+                  if (avgForecastWind % 3.6 === 0) {
+                    avgForecastWind = (avgForecastWind / 3.6).toFixed();
+                  } else {
+                    avgForecastWind = (avgForecastWind / 3.6).toFixed(1);
+                  }
+                  weatherElems.forecastBlocksRefs[
+                    acc - 1
+                  ].innerHTML = `<h4 class="forecast-card__subtitle">${dataForecast.forecast.forecastday[acc].day.condition.text}</h4>
+                  <p class="forecast__desc">wind: ${avgForecastWind} m/s</p>
+                  <p class="forecast__desc">rain: ${dataForecast.forecast.forecastday[acc].day.daily_chance_of_rain}%</p>`;
+                  // console.log(iconEl);
+                  // console.log(acc);
+                  // console.log(dataForecast.forecast.forecastday[acc]);
+
                   allStatuses.map((status) => {
                     if (
                       dataForecast.forecast.forecastday[acc].day.condition

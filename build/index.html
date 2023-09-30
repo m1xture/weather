@@ -9,6 +9,17 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
     <link rel="stylesheet" href="./css/style.min.css" />
   </head>
 
@@ -52,7 +63,11 @@
       </li>
       <li class="header__item">
         <div class="degrees">
-          <button type="button" class="degrees__btn degrees__disable">
+          <button
+            type="button"
+            class="degrees__btn degrees__disable"
+            data-f
+          >
             °F
           </button>
           <button type="button" class="degrees__btn">°С</button>
@@ -76,17 +91,18 @@
 
     <main><section class="hero">
   <div class="container">
-    <div class="hero-block">
-      <h2 class="location__text">London, Britain</h2>
-      <h3 class="date__text">
-        <span data-date>Mon</span> <span date-num>28</span>
-        <span data-month>October</span> <span data-time>21:12</span>
-      </h3>
-    </div>
-    <div class="weather-block">
-      <div class="hero-degree-block">
-        <h2 class="hero__degree"><span data-degree>10</span>°</h2>
-        <!-- <svg
+    <div class="hero__leftside">
+      <div class="hero-block">
+        <h2 class="location__text">London, Britain</h2>
+        <h3 class="date__text">
+          <span data-date>Mon</span> <span date-num>28</span>
+          <span data-month>October</span> <span data-time>21:12</span>
+        </h3>
+      </div>
+      <div class="weather-block">
+        <div class="hero-degree-block">
+          <h2 class="hero__degree"><span data-degree>10</span>°</h2>
+          <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           width="164"
           height="104"
@@ -107,69 +123,75 @@
             stroke-width="0.1"
           />
         </svg> -->
-        <s
-          ><img
-            class="hero__main-weather-ico"
-            src="../img/icons/cloudsSunD.png"
-            alt="weather icon"
-        /></s>
+          <s
+            ><img
+              class="hero__main-weather-ico"
+              src="../img/icons/cloudsSunD.png"
+              alt="weather icon"
+          /></s>
+        </div>
+        <div class="overcast">
+          <h3 class="overcast__subtitle" data-current-status>OVercast</h3>
+          <p class="overcast__text">
+            Feels like: <span data-feels-like>7</span>°
+          </p>
+          <p class="overcast__text">wind: <span data-wind>2</span>m/s</p>
+          <p class="overcast__text">humidity: <span data-humidity>83</span>%</p>
+        </div>
       </div>
-      <div class="overcast">
-        <h3 class="overcast__subtitle" data-current-status>OVercast</h3>
-        <p class="overcast__text">
-          Feels like: <span data-feels-like>7</span>°
-        </p>
-        <p class="overcast__text">wind: <span data-wind>2</span>m/s</p>
-        <p class="overcast__text">humidity: <span data-humidity>83</span>%</p>
-      </div>
+      <ul class="forecast">
+        <li class="forecast__item">
+          <h4 class="forecast__subtitle" data-first-day>Tuesday</h4>
+          <div class="forecast-block">
+            <p class="forecast__degrees"><span data-first-degree>7</span>°</p>
+            <img
+              class="forecast__icon"
+              src="../img/icons/cloudsun.png"
+              alt="first day weather icon"
+              data-first-day-ico
+            />
+          </div>
+          <div class="forecast-description-block" data-first-desc></div>
+        </li>
+        <li class="forecast__item">
+          <h4 class="forecast__subtitle" data-second-day>Wednesday</h4>
+          <div class="forecast-block">
+            <p class="forecast__degrees"><span data-second-degree>6</span>°</p>
+            <img
+              class="forecast__icon"
+              src="../img/icons/rains.png"
+              alt="second day weather icon"
+              data-second-day-ico
+            />
+          </div>
+          <div class="forecast-description-block" data-second-desc></div>
+        </li>
+        <li class="forecast__item">
+          <h4 class="forecast__subtitle" data-third-day>Thursday</h4>
+          <div class="forecast-block">
+            <p class="forecast__degrees"><span data-third-degree>3</span>°</p>
+            <img
+              class="forecast__icon"
+              src="../img/icons/cloudFog.png"
+              alt="third day weather icon"
+              data-third-day-ico
+            />
+          </div>
+          <div class="forecast-description-block" data-third-desc></div>
+        </li>
+      </ul>
     </div>
-    <ul class="forecast">
-      <li class="forecast__item">
-        <h4 class="forecast__subtitle" data-first-day>Tuesday</h4>
-        <div class="forecast-block">
-          <p class="forecast__degrees"><span data-first-degree>7</span>°</p>
-          <img
-            class="forecast__icon"
-            src="../img/icons/cloudsun.png"
-            alt="first day weather icon"
-            data-first-day-ico
-          />
-        </div>
-        <div class="forecast-description-block" data-first-desc>
-          
-        </div>
-      </li>
-      <li class="forecast__item">
-        <h4 class="forecast__subtitle" data-second-day>Wednesday</h4>
-        <div class="forecast-block">
-          <p class="forecast__degrees"><span data-second-degree>6</span>°</p>
-          <img
-            class="forecast__icon"
-            src="../img/icons/rains.png"
-            alt="second day weather icon"
-            data-second-day-ico
-          />
-        </div>
-        <div class="forecast-description-block" data-second-desc>
-          
-        </div>
-      </li>
-      <li class="forecast__item">
-        <h4 class="forecast__subtitle" data-third-day>Thursday</h4>
-        <div class="forecast-block">
-          <p class="forecast__degrees"><span data-third-degree>3</span>°</p>
-          <img
-            class="forecast__icon"
-            src="../img/icons/cloudFog.png"
-            alt="third day weather icon"
-            data-third-day-ico
-          />
-        </div>
-        <div class="forecast-description-block" data-third-desc>
-          
-        </div>
-      </li>
-    </ul>
+    <div class="hero__aside">
+      <div id="map"></div>
+      <ul class="map-coords">
+        <li class="map__item">
+          <p class="map__text">Latitude: <span data-coords-lat>53°54'</span></p>
+        </li>
+        <li class="map__item">
+          <p class="map__text">Longitude: <span data-coords-lon>27°34'</span></p>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
 </main>
