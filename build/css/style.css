@@ -105,6 +105,30 @@ button {
   }
 }
 
+@-webkit-keyframes unitsAnimation {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes unitsAnimation {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
 .header {
   padding-top: 40px;
   position: absolute;
@@ -194,6 +218,13 @@ button {
 
 .degrees__disable {
   background-color: rgba(76, 82, 85, 0.4);
+}
+
+.degrees__active {
+  -webkit-animation-name: unitsAnimation;
+          animation-name: unitsAnimation;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
 }
 
 .search__form {
