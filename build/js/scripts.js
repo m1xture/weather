@@ -437,6 +437,9 @@ function weatherFetch() {
                       case "Cloudy":
                         iconEl.src = "../img/icons/twoclouds.png";
                         break;
+                      case "Overcast":
+                        iconEl.src = "../img/icons/twoclouds.png";
+                        break;
                       case "Cloudy" &&
                         dataForecast.forecast.forecastday[acc].day.maxwind_kph >
                           25:
@@ -515,6 +518,7 @@ function weatherFetch() {
                       case "Patchy light snow with thunder":
                         iconEl.src = "../img/icons/drizzleThunder.png";
                         break;
+
                       default:
                         break;
                     }
