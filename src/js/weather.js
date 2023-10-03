@@ -395,15 +395,16 @@ function weatherFetch() {
                       case "Mist" || "Fog" || "Freezing fog":
                         iconEl.src = "../img/icons/cloudFog.png";
                         break;
-                      case "Patchy rain possible" ||
-                        "Patchy light drizzle" ||
-                        "Light drizzle" ||
-                        "Freezing drizzle" ||
-                        "Patchy light rain" ||
-                        "Light rain":
+                      case "Patchy rain possible":
+                      case "Patchy light drizzle":
+                      case "Light drizzle":
+                      case "Freezing drizzle":
+                      case "Patchy light rain":
+                      case "Light rain":
                         iconEl.src = "../img/icons/lightRain.png";
                         break;
-                      case "Patchy snow possible" || "Patchy heavy snow":
+                      case "Patchy snow possible":
+                      case "Patchy heavy snow":
                         iconEl.src = "../img/icons/cloud1snow.png";
                         break;
                       case "Patchy sleet possible" ||
