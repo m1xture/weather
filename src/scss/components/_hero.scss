@@ -17,39 +17,104 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding-top: 141px;
+  padding-top: 175px;
   padding-bottom: 97px;
-  height: 100vh;
+  height: auto;
   display: flex;
   align-items: center;
+
+  @media screen and (min-width: 591px) {
+    padding-top: 130px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 141px;
+    padding-bottom: 97px;
+    height: auto;
+  }
+
+  @media screen and (min-width: 1200px) {
+    // padding-top: 141px;
+    // padding-bottom: 97px;
+    height: 100vh;
+  }
 }
 
 .hero-block {
 }
 
+.hero .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .weather-block {
   display: flex;
+
+  @media screen and (min-width: 320px) {
+    display: block;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 }
 
 .location__text {
-  font-size: 44px;
+  font-size: 28px;
   font-weight: 700;
   line-height: normal;
   text-transform: uppercase;
+
+  @media screen and (min-width: 540px) {
+    font-size: 31px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 34px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 44px;
+  }
 }
 
 .date__text {
-  font-size: 24px;
+  font-size: 17px;
   font-weight: 600;
   line-height: normal;
+
+  @media screen and (min-width: 540px) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 24px;
+  }
 }
 
 [data-degree] {
-  font-size: 306px;
   font-weight: 700;
   line-height: normal;
   text-transform: uppercase;
   z-index: 5;
+  font-size: 160px;
+
+  @media screen and (min-width: 540px) {
+    font-size: 240px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 270px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 306px;
+  }
 }
 
 .weather__icon {
@@ -66,38 +131,89 @@
 }
 
 .hero__degree {
-  font-size: 100px;
+  font-size: 70px;
   font-weight: 700;
-  line-height: 230%;
+  line-height: 210%;
   text-transform: uppercase;
   z-index: 5;
   display: flex;
   align-items: flex-start;
+
+  @media screen and (min-width: 540px) {
+    font-size: 80px;
+    line-height: 200%;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 90px;
+    line-height: 230%;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 100px;
+    line-height: 230%;
+  }
 }
 
 .overcast {
-  padding-left: 32px;
-  padding-top: 154px;
+  // padding-left: 32px;
+  // padding-top: 154px;
+  text-align: right;
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 590px) {
+    padding-top: 75px;
+    padding-left: 32px;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 90px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding-left: 32px;
+    padding-top: 154px;
+  }
 }
 
 .overcast__subtitle {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 168.182%;
   text-transform: uppercase;
+
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+  }
 }
 
 .overcast__text {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 37px;
   text-transform: lowercase;
+
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+  }
 }
 .forecast {
-  display: flex;
+  display: block;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   gap: 51px;
+
+  @media screen and (min-width: 540px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  // @media screen and (min-width: 768px){
+  //   display: flex;
+  // }
 }
 
 .forecast__item {
@@ -124,6 +240,15 @@
 }
 .hero__main-weather-ico {
   position: absolute;
+  height: 70px;
+
+  @media screen and (min-width: 540px) {
+    height: 90px;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: auto;
+  }
 }
 .forecast__icon {
   height: 52px;
@@ -160,10 +285,15 @@
   line-height: normal;
 }
 #map {
-  width: 375px;
-  height: 398px;
+  width: 300px;
+  height: 315px;
   border-radius: 10px;
   overflow: hidden;
+
+  @media screen and (min-width: 1200px) {
+    width: 375px;
+    height: 398px;
+  }
 }
 .hero .container {
   display: flex;

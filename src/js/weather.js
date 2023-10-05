@@ -392,7 +392,9 @@ function weatherFetch() {
                           25:
                         iconEl.src = "../img/icons/cloudwind.png";
                         break;
-                      case "Mist" || "Fog" || "Freezing fog":
+                      case "Mist":
+                      case "Fog":
+                      case "Freezing fog":
                         iconEl.src = "../img/icons/cloudFog.png";
                         break;
                       case "Patchy rain possible":
@@ -407,13 +409,13 @@ function weatherFetch() {
                       case "Patchy heavy snow":
                         iconEl.src = "../img/icons/cloud1snow.png";
                         break;
-                      case "Patchy sleet possible" ||
-                        "Patchy freezing drizzle possible" ||
-                        "Light freezing rain" ||
-                        "Light sleet" ||
-                        "Ice pellets" ||
-                        "Light showers of ice pellets" ||
-                        "Moderate or heavy showers of ice pellets":
+                      case "Patchy sleet possible":
+                      case "Patchy freezing drizzle possible":
+                      case "Light freezing rain":
+                      case "Light sleet":
+                      case "Ice pellets":
+                      case "Light showers of ice pellets":
+                      case "Moderate or heavy showers of ice pellets":
                         iconEl.src = "../img/icons/cloud90.png";
                         break;
                       case "Thundery outbreaks possible":
@@ -422,7 +424,8 @@ function weatherFetch() {
                       case "Blizzard":
                         iconEl.src = "../img/icons/cloudwind.png";
                         break;
-                      case "Heavy freezing drizzle" || "Moderate rain at times":
+                      case "Heavy freezing drizzle":
+                      case "Moderate rain at times":
                         iconEl.src = "../img/icons/rains.png";
                         break;
                       case "Moderate rain":
@@ -431,36 +434,36 @@ function weatherFetch() {
                       case "Heavy rain at times":
                         iconEl.src = "../img/icons/cloudRainDeg.png";
                         break;
-                      case "Heavy rain" ||
-                        "Moderate or heavy freezing rain" ||
-                        "Torrential rain shower":
+                      case "Heavy rain":
+                      case "Moderate or heavy freezing rain":
+                      case "Torrential rain shower":
                         iconEl.src = "../img/icons/cloud2rain.png";
                         break;
-                      case "Moderate or heavy sleet" ||
-                        "Heavy snow" ||
-                        "Moderate or heavy sleet showers" ||
-                        "Moderate or heavy snow showers":
+                      case "Moderate or heavy sleet":
+                      case "Heavy snow":
+                      case "Moderate or heavy sleet showers":
+                      case "Moderate or heavy snow showers":
                         iconEl.src = "../img/icons/cloudsnow.png";
                         break;
-                      case "Patchy light snow" ||
-                        "Light snow" ||
-                        "Patchy moderate snow":
+                      case "Patchy light snow":
+                      case "Light snow":
+                      case "Patchy moderate snow":
                         iconEl.src = "../img/icons/snow.png";
                         break;
-                      case "Moderate snow" ||
-                        "Light sleet showers" ||
-                        "Light snow showers":
+                      case "Moderate snow":
+                      case "Light sleet showers":
+                      case "Light snow showers":
                         iconEl.src = "../img/icons/snows.png";
                         break;
-                      case "Light rain shower" ||
-                        "Moderate or heavy rain shower":
+                      case "Light rain shower":
+                      case "Moderate or heavy rain shower":
                         iconEl.src = "../img/icons/cloudrain90.png";
                         break;
                       case "Patchy light rain with thunder":
                         iconEl.src = "../img/icons/cloudTh.png";
                         break;
-                      case "Moderate or heavy rain with thunder" ||
-                        "Moderate or heavy snow with thunder":
+                      case "Moderate or heavy rain with thunder":
+                      case "Moderate or heavy snow with thunder":
                         iconEl.src = "../img/icons/cloudrainthunder.png";
                         break;
                       case "Patchy light snow with thunder":
